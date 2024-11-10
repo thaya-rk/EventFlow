@@ -7,13 +7,19 @@ const userSchema = new mongoose.Schema(
       required: true,
       unique: true,
     },
-    displayName: {
+    username: {
       type: String,
       required: true,
     },
+    email: {
+      type: String,
+      required: true,
+      unique: true, // Ensure that the email is unique
+      match: [/^\S+@\S+\.\S+$/, 'Please use a valid email address'], // Email validation regex
+    },
     role: {
       type: String,
-      enum: ['staff', 'HOD', 'principal', 'AO'], // Example roles
+      enum: ['staff', 'HOD', 'principal', 'AO'],
       required: true,
     },
     department: {
